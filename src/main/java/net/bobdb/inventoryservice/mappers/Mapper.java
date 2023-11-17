@@ -8,14 +8,14 @@ import org.springframework.stereotype.Service;
 public class Mapper {
     public Inventory mapToObject(InventoryRequest inventoryRequest) {
         return Inventory.builder()
-                .skuCode(inventoryRequest.getSkuCode())
+                .skucode(inventoryRequest.getSkucode())
                 .quantity(inventoryRequest.getQuantity())
                 .build();
     }
 
     public static InventoryRequest mapToDto(Inventory inventory) {
         return InventoryRequest.builder()
-                .skuCode(inventory.getSkuCode())
+                .skucode(inventory.getSkucode())
                 .quantity(inventory.getQuantity())
                 .build();
     }

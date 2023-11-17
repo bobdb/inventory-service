@@ -8,6 +8,7 @@ import net.bobdb.inventoryservice.models.Inventory;
 import net.bobdb.inventoryservice.repositories.InventoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -28,6 +29,10 @@ public class InventoryService {
     public void createInventory(InventoryRequest inventoryRequest) {
         Inventory inventory = mapper.mapToObject(inventoryRequest);
         inventoryRepository.save(inventory);
-        log.info("Inventory Item " + inventoryRequest.getSkuCode() + " created" );
+        log.info("Inventory Item " + inventoryRequest.getSkucode() + " created" );
+    }
+    @Transactional(readOnly = true)
+    public boolean isInStock(String skuCode) {
+        return inventoryRepository.findBySkucode(skuCode).isPresent();
     }
 }

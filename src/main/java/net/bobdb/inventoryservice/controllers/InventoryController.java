@@ -33,8 +33,14 @@ public class InventoryController {
     public InventoryResponse createInventory(@RequestBody InventoryRequest inventoryRequest) {
         inventoryService.createInventory(inventoryRequest);
         return InventoryResponse.builder()
-                .message("inventory " + inventoryRequest.getSkuCode() + " created")
+                .message("inventory " + inventoryRequest.getSkucode() + " created")
                 .build();
+    }
+
+    @GetMapping("/{skucode}")
+    @ResponseStatus(HttpStatus.OK)
+    public boolean isInStock(@PathVariable("skucode") String skuCode) {
+        return inventoryService.isInStock(skuCode);
     }
 
 }

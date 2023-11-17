@@ -10,6 +10,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class InventoryRequest {
-    private String skuCode;
+    private String skucode;
     private Integer quantity;
 }
